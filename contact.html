@@ -15,6 +15,26 @@
 <link href="assets/css/all-css.css" rel="stylesheet" type="text/css">
 <link href="assets/css/set1.css" rel="stylesheet" type="text/css">
 <!--css-->
+  
+  
+<script>
+  var isNS = (navigator.appName == "PN") ? 1 : 0;
+  if(navigator.appName == "PN") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+  function mischandler(){
+  return false;
+  }
+  function mousehandler(e){
+  var myevent = (isNS) ? e : event;
+  var eventbutton = (isNS) ? myevent.which : myevent.button;
+  if((eventbutton==2)||(eventbutton==3)) return false;
+  }
+  document.oncontextmenu = mischandler;
+  document.onmousedown = mousehandler;
+  document.onmouseup = mousehandler;
+  </script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
 </head>
 <body id="page-top">
 <div id="preloader"></div>
@@ -52,7 +72,7 @@
         <div class="contact-form" >
           <div class="row">
             <div class="col-sm-6 wow fadeIn">
-              <form id="main-contact-form" name="contact-form" method="post" action="#">
+              <form id="submit-form" name="contact-form" method="" action="">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
@@ -79,6 +99,28 @@
                 </div>
               </form>
             </div>
+            
+            
+<script>
+  $("#submit-form").submit((e)=>{
+  e.preventDefault()
+  $.ajax({
+  url:"https://script.google.com/macros/s/AKfycbw5zR1VsHhfz5ekNbUsyD1I3J_AHku-aIs52o9o7_uFBQ3erbOUariQW9iZ2gVSiWwvag/exec",
+  data:$("#submit-form").serialize(),
+  method:"post",
+  success:function (response){
+  alert("Our sales team will contact you shortly. Thank you!")
+  window.location.reload()
+  //window.location.href="https://google.com"
+  },
+  error:function (err){
+  alert("Something Error")
+  
+  }
+  })
+  })
+  </script>
+            
             <div class="col-sm-6 wow fadeIn">
               <div class="contact-info">
                
